@@ -44,35 +44,39 @@
           </div>
 
           <div class="col-md-6">
-            <div id="div-continent" class="form-group">
-              <label for="continent" type="control-label">Which continent catches your fancy?</label>
-              <select id="continent" class="form-control">
-                <span class="caret"></span>
-                <option>Asia</option>
-                <option>Europe</option>
-                <option>North America</option>
-                <option>South America</option>
-                <option>Australia and Pacific Islands</option>
-                <option>Antarctica</option>
-                <option>Africa</option>
-              </select>
+            <div id="div-when" class="form-group">
+              <label for="when" class="control-label">Which season(s) would you like to take this trip?</label>
+              <div class="checkbox">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="when1" value="spring"> Spring
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="when2" value="summer"> Summer
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="when3" value="autumn"> Autumn
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="when4" value="winter"> Winter
+                </label>
+              </div>
             </div>
           </div>
-        
+          
         </div> <!-- first row -->
 
         <div class="row">
           <div class="col-md-6">
             <div id="div-density" class="form-group">
-              <label for="density" class="control-label">Do you prefer being in cities, wilderness, or somewhere in between?</label>
+              <label for="density" class="control-label">Do you prefer being in the city, wilderness, or somewhere in between?</label>
               <p class="small">Urban <input type="range" min="0" max="10" id="density"> Wilderness</p>
             </div>
           </div>
           
           <div class="col-md-6">
             <div id="div-favColor" class="form-group">
-              <label for="favColor" class="control-label">What's your favorite color?</label>
-              <input id="favCcolor" class="form-control" type="color">
+              <label for="favColor" class="control-label">Pick your favorite color.</label>
+              <input id="favColor" class="form-control" type="color">
             </div>
           </div>               
         </div> <!-- 2nd row -->
@@ -80,25 +84,36 @@
         <div class="row">
           <div class="col-md-6">
             <div id="div-activity" class="form-group">
-              <label for="activities" class="control-label">What are your favorite activities on vacation?</label>
-              <input id="activities" class="form-control" type="text">
+              <label for="activity" class="control-label">List some activities you like doing on vacation.</label>
+              <input id="activity" class="form-control" type="text">
             </div>
           </div>
 
           <div class="col-md-6">
-            <div id="div-when" class="form-group">
-              <label for="when" class="control-label">When are you thinking of taking this trip?</label>
-              <input id="side3" class="form-control" type="month">
+            <div id="div-continent" class="form-group">
+              <label for="continent" type="control-label">Which continent strikes your fancy?</label>
+              <select id="continent" class="form-control">
+                <span class="caret"></span>
+                <option>Asia</option>
+                <option>Europe</option>
+                <option>North America</option>
+                <option>South America</option>
+                <option value="Australia">Australia and Pacific Islands</option>
+                <option>Antarctica</option>
+                <option>Africa</option>
+              </select>
             </div>
           </div>
+          
         </div> <!-- 3rd row -->
 
         <div class="row">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary btn-block">Suggest my next vacation</button>
+            <button type="submit" class="btn btn-primary btn-block">Suggest my next vacation</button>
           </div>
         </div>
       </form>
+      
       
       <p><div id="output"></div></p>
 
