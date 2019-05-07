@@ -51,7 +51,7 @@
                   <input type="checkbox" id="when1" value="spring"> Spring
                 </label>
                 <label class="checkbox-inline">
-                  <input type="checkbox" id="when2" value="summer"> Summer
+                  <input type="checkbox" id="when2" value="summer" checked> Summer
                 </label>
                 <label class="checkbox-inline">
                   <input type="checkbox" id="when3" value="autumn"> Autumn
@@ -76,7 +76,7 @@
           <div class="col-md-6">
             <div id="div-favColor" class="form-group">
               <label for="favColor" class="control-label">Pick your favorite color.</label>
-              <input id="favColor" class="form-control" type="color">
+              <input id="favColor" class="form-control" type="color" value="#ff80ff">
             </div>
           </div>               
         </div> <!-- 2nd row -->
@@ -85,7 +85,7 @@
           <div class="col-md-6">
             <div id="div-activity" class="form-group">
               <label for="activity" class="control-label">List some activities you like doing on vacation.</label>
-              <input id="activity" class="form-control" type="text">
+              <input id="activity" class="form-control" value="biking, hiking, sightseeing" type="text">
             </div>
           </div>
 
@@ -114,40 +114,19 @@
         </div>
       </form>
       
-      
-      <p><div id="output"></div></p>
-
-      
-      <!--
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <img data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide">
+      <div id="output" class="output">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Good news! We were able to find some wonderful suggestions for your next vacation!</h4>
+            <div class="travelquote"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
             </div>
-            <div class="item">
-              <img data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide">
-            </div>
-            <div class="item">
-              <img data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide">
-            </div>
+            <mark><span id="suggestion"></span></mark> is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
           </div>
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div> -->
-
-
-
-    </div>
+          <div class="col-md-6 img-fit"> 
+            <img src="img/beach.jpg" class="img-fit">
+          </div>
+        </div>
+      </div><!-- end output div-->
+    </div><!-- end container div-->
   </body>
 </html>

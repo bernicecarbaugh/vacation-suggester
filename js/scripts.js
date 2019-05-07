@@ -1,6 +1,8 @@
 // back end logic
 
-var vacation = function(habitat, density, color, continent, when) {
+var vacation = function(iHabitat, iDensity, iContinent) {
+  if iContinent === "Asia"
+  
   return "anywhere";
 }
 
@@ -12,31 +14,39 @@ $(document).ready(function() {
     
     // remove traces of previous runs
     // get user input; some inputs have defaults so no need to check for null values
-    var sHabitat = $("input:radio[name=habitat]:checked").val();
-    var sContinent = $("#continent").val();
-    var nDensity = parseInt($("#density").val());
-    var sFavColor = $("#favColor").val();
+    var iHabitat = $("input:radio[name=habitat]:checked").val();
+    var iContinent = $("#continent").val();
+    var iDensity = parseInt($("#density").val());
+    var iFavColor = $("#favColor").val();
     // check that user entered something
-    var sActivity = $("#activity").val();
-    var sWhen = "";
+    var iActivity = $("#activity").val();
+    var iWhen = "";
     if($("#when1").is(":checked")) { 
-      sWhen += $("#when1").val() + ", "
+      iWhen += $("#when1").val() + ", "
     }
     if($("#when2").is(":checked")) { 
-      sWhen += $("#when2").val() + ", "
+      iWhen += $("#when2").val() + ", "
     }
     if($("#when3").is(":checked")) { 
-      sWhen += $("#when3").val() + ", "
+      iWhen += $("#when3").val() + ", "
     }
     if($("#when4").is(":checked")) { 
-      sWhen += $("#when4").val() + ", "
+      iWhen += $("#when4").val() + ", "
     }
+    iWhen = iWhen.replace(/, $/,"");
 
-    isValid(sActivity, "div-activity") ;
-    isValid(sWhen, "div-when") ;
+    isValid(iActivity, "div-activity") ;
+    isValid(iWhen, "div-when") ;
     
-    if (sActivity && sWhen) {
-      alert ("display options");
+    if (iActivity && iWhen) {
+      // send some inputs into back-end logic to get suggestions
+      var oSuggestion = vacation(iHabitat, iDensity, iContinent);
+      // other inputs will just be used to respond to user
+      $("#suggestion").text(oSuggestion);
+      $("#when").text(iWhen);
+      $("#activities").text(iActivity);
+      $("div.output").fadeIn();
+      $("div.travelquote").css("background-color",iFavColor);
     } else {
       alert ("We need more information to get you some awesome suggestions.")
     }
