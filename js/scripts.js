@@ -1,16 +1,18 @@
 // back end logic
-var vacationSelector = function(habitatInput, densityInput, continentInput, suggestionOrder)  {
-// parameters: user preferences and the suggestion order
-//  suggestion order expected to be 1 to 3 which represents the order in which it's presented
-//  for first pass or suggestionOrder, stick closest to user's preference for density (city vs wilderness)
-//  for second pass, go further
-//  for last pass, go furthest
+var vacationSelector = function(habitatInput, densityInput, continentInput, numOffset)  {
+// parameters: user preferences and the numOffset
+//  numOffset is expected to be 0 to 2 which represents the suggestion order
+//  we use numOffset to present 3 different choices based on densityInput (1 to 3)
 //  this ensures we have three different suggestions for any user preference
-//  densityInput is expected to be an integer from 1 to 3
 // output: the name of the suggested vacation destination
 
+  var densitySelector = (densityInput + numOffset ) 
+  // this will produce a number between 1 and 5 , which we will need to convert to 1 to 3 
+  if ( densitySelector > 3) {
+    densitySelector = densitySelector - 3 ;
+  }
   // urban
-  if (densityInput === 1) {
+  if (densitySelector === 1) {
     if (continentInput === "Asia") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
         return "Tokyo, Japan";
@@ -21,10 +23,10 @@ var vacationSelector = function(habitatInput, densityInput, continentInput, sugg
       }
     else if (continentInput === "Europe") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
-        vacationSelected = "Munich, Germany";
+        return "Munich, Germany";
         }
       else if (habitatInput === "beach" ||habitatInput === "desert") {
-        vacationSelected = "Barcelona, Spain";
+        return "Barcelona, Spain";
         }
       }
     // continentInput === "Americas" 
@@ -37,7 +39,7 @@ var vacationSelector = function(habitatInput, densityInput, continentInput, sugg
         }
       }
   }
-  else if (densityInput === 2) {
+  else if (densitySelector === 2) {
     if (continentInput === "Asia") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
         return "Pyong Yang, South Korea";
@@ -48,10 +50,10 @@ var vacationSelector = function(habitatInput, densityInput, continentInput, sugg
       }
     else if (continentInput === "Europe") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
-        vacationSelected = "Copenhagen, Denmark";
+        return "Copenhagen, Denmark";
         }
       else if (habitatInput === "beach" ||habitatInput === "desert") {
-        vacationSelected = "Biarritz, France";
+        return "Biarritz, France";
         }
       }
     // continentInput === "Americas" 
@@ -64,7 +66,7 @@ var vacationSelector = function(habitatInput, densityInput, continentInput, sugg
         }
     }
   }
-  // else densityInput === 3
+  // else densitySelector === 3
   else {
     if (continentInput === "Asia") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
@@ -76,10 +78,10 @@ var vacationSelector = function(habitatInput, densityInput, continentInput, sugg
       }
     else if (continentInput === "Europe") {
       if (habitatInput === "forest" || habitatInput === "mountain" ) {
-        vacationSelected = "Retezat Mountains, Romania";
+        return "Retezat Mountains, Romania";
         }
       else if (habitatInput === "beach" ||habitatInput === "desert") {
-        vacationSelected = "Mallorca, Spain";
+        return "Mallorca, Spain";
         }
       }
     // continentInput === "Americas" 
@@ -126,15 +128,17 @@ $(document).ready(function() {
     isValid(whenInput, "div-when") ;
     
     if (activityInput && whenInput) {
-      // send some inputs into back-end logic to get suggestions
       // other inputs will just be used to respond to user
-      var suggestionOutput = vacationSelector(habitatInput, densityInput, continentInput, 1);
-      $("#suggestion").text(suggestionOutput);
       $("#when").text(whenInput);
       $("#activities").text(activityInput);
       $("div.output").fadeIn();
-      $("div.travelquote").css("background-color",favColorInput);
-      alert(suggestionOutput);
+      $(".bgFavColor").css("background-color",favColorInput);
+      // call helper function which changes only those elements that change for the different suggestions (1 to 3); since this is the first call, start with 1
+      // send some inputs into back-end logic to get suggestions
+      var suggestedVacation = vacationSelector(habitatInput, densityInput, continentInput, 0);
+      console.log (suggestedVacation);
+      changeOutputHTML (suggestedVacation, 1 );
+      
     } else {
       alert ("We need more information to get you some awesome suggestions.")
     }
@@ -150,5 +154,25 @@ $(document).ready(function() {
       return false;
     }
   }
+
+  var changeOutputHTML = function(suggestedVacation, numOffset) {
+    $("#suggestedVacation").text(suggestedVacation);
+    // images are named all lower case, spaces are substituted with - and only through the first comma
+    var imgFile = suggestedVacation.split(",")[0];
+    imgFile = imgFile.replace(/\s/,"-");
+    imgFile = "img/" + imgFile.toLowerCase() + ".jpg";
+    
+    $('#imgSuggestedVacation').attr('src',imgFile);
+    $("#outputNavPage1").removeClass("active");
+    $("#outputNavPage2").removeClass("active");
+    $("#outputNavPage3").removeClass("active");
+    $("#outputNavPage" + numOffset).addClass("active");
+  }    
+
+  $("#outputNavPage2").click(function() {
+    changeOutputHTML (suggestedVacation, numOffset);
+  })
+
+
 
 })

@@ -13,10 +13,11 @@
 
     <div class="container">
       <div class="jumbotron">
-        <h2>Vacation Suggester</h2>
-        <h4>Wondering where to go on vacation next? Fill out this survey and we'll give you some ideas!</h4>
+        <div class="bg-jumbotron">
+          <h2>Vacation Suggester</h2>
+          <h4>Wondering where to go on vacation next? Fill out this survey and we'll give you some ideas!</h4>
+        </div>
       </div>
-        
       <form id="input">        
         <div class="row">
           <div class="col-md-6">
@@ -83,13 +84,6 @@
          
         <div class="row">
           <div class="col-md-6">
-            <div id="div-activity" class="form-group">
-              <label for="activity" class="control-label">List some activities you like doing on vacation.</label>
-              <input id="activity" class="form-control" value="biking, hiking, sightseeing" type="text">
-            </div>
-          </div>
-
-          <div class="col-md-6">
             <div id="div-continent" class="form-group">
               <label for="continent" type="control-label">Which continent strikes your fancy?</label>
               <select id="continent" class="form-control">
@@ -98,6 +92,13 @@
                 <option>Europe</option>
                 <option>Americas</option>
               </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div id="div-activity" class="form-group">
+              <label for="activity" class="control-label">List some activities you like doing on vacation.</label>
+              <input id="activity" class="form-control" value="biking, hiking, sightseeing" type="text">
             </div>
           </div>
           
@@ -114,24 +115,19 @@
         <div class="row">
           <div class="col-md-6">
             <h4>Good news! We were able to find some wonderful suggestions for your next vacation!</h4>
-            <div class="travelquote"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
+            <div class="bgFavColor"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
             </div>
-            <mark><span id="suggestion"></span></mark> is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
+            <mark><strong><span id="suggestedVacation"></span></strong></mark> is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
             <nav aria-label="Page navigation">
               <ul class="pagination pagination-lg">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
+                <li id="outputNavPage1"><a href="#">1</a></li>
+                <li id="outputNavPage2"><a href="#">2</a></li>
+                <li id="outputNavPage3"><a href="#">3</a></li>
               </ul>
             </nav>
           </div>
           <div class="col-md-6 img-fit"> 
-            <img src="img/beach.jpg" class="img-fit">
+            <img id="imgSuggestedVacation" src='img/beach-banner.jpg' class='img-fit' alt="photo Vacation Suggestion">
           </div>
         </div>
       </div><!-- end output div-->

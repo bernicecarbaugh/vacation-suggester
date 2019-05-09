@@ -23,3 +23,7 @@ img.img-fit {
   height: 100%;
   padding: 10px;
 }
+
+.bg-jumbotron { 
+  background-color: rgba(120, 142, 218, 0.2);
+}
