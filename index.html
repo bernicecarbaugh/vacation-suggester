@@ -69,7 +69,7 @@
           <div class="col-md-6">
             <div id="div-density" class="form-group">
               <label for="density" class="control-label">Do you prefer being in the city, wilderness, or somewhere in between?</label>
-              <p class="small">Urban <input type="range" min="0" max="10" id="density"> Wilderness</p>
+              <p class="small">Urban <input type="range" min="1" max="3" step="0.5" id="density"> Wilderness</p>
             </div>
           </div>
           
@@ -96,11 +96,7 @@
                 <span class="caret"></span>
                 <option>Asia</option>
                 <option>Europe</option>
-                <option>North America</option>
-                <option>South America</option>
-                <option value="Australia">Australia and Pacific Islands</option>
-                <option>Antarctica</option>
-                <option>Africa</option>
+                <option>Americas</option>
               </select>
             </div>
           </div>
@@ -121,6 +117,18 @@
             <div class="travelquote"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
             </div>
             <mark><span id="suggestion"></span></mark> is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
+            <nav aria-label="Page navigation">
+              <ul class="pagination pagination-lg">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
           <div class="col-md-6 img-fit"> 
             <img src="img/beach.jpg" class="img-fit">
