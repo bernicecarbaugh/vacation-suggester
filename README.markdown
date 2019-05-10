@@ -1,9 +1,9 @@
 # Vacation Suggester Tracker
-#### Class Assignment Epicodus Intro to Programming, 2019.05.06
+#### Class Assignment Epicodus Intro to Programming, 2019.05.09
 #### By Bernice Carbaugh
 
 ## Description
-This is the 2nd Independent Project for my Epicodus Introduction to Programming class. Users fill out a survey about their preferences (at least 5 questions) and they are given some (at least 3) vacation destination suggestions. 
+This is the 2nd Independent Project for my Epicodus Introduction to Programming class. Users fill out a survey about their preferences and they are given 3 vacation destination suggestions. Not all of the inputs are used to select the vacation suggestions, but all are used in the output.
 
 ## Setup / Installation Requirements
 [Click here](http://bernicecarbaugh.github.io/vacation-suggester/) to view the page on your browser.

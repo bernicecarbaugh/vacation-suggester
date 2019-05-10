@@ -13,7 +13,7 @@
 
     <div class="container">
       <div class="jumbotron">
-        <div class="bg-jumbotron">
+        <div class="text-jumbotron">
           <h2>Vacation Suggester</h2>
           <h4>Wondering where to go on vacation next? Fill out this survey and we'll give you some ideas!</h4>
         </div>
@@ -52,7 +52,7 @@
                   <input type="checkbox" id="when1" value="spring"> Spring
                 </label>
                 <label class="checkbox-inline">
-                  <input type="checkbox" id="when2" value="summer" checked> Summer
+                  <input type="checkbox" id="when2" value="summer"> Summer
                 </label>
                 <label class="checkbox-inline">
                   <input type="checkbox" id="when3" value="autumn"> Autumn
@@ -75,9 +75,9 @@
           </div>
           
           <div class="col-md-6">
-            <div id="div-favColor" class="form-group">
-              <label for="favColor" class="control-label">Pick your favorite color.</label>
-              <input id="favColor" class="form-control" type="color" value="#ff80ff">
+            <div id="div-favcolor" class="form-group">
+              <label for="favcolor" class="control-label">Pick your favorite color.</label>
+              <input id="favcolor" class="form-control" type="color" value="#ff8040">
             </div>
           </div>               
         </div> <!-- 2nd row -->
@@ -97,8 +97,8 @@
 
           <div class="col-md-6">
             <div id="div-activity" class="form-group">
-              <label for="activity" class="control-label">List some activities you like doing on vacation.</label>
-              <input id="activity" class="form-control" value="biking, hiking, sightseeing" type="text">
+              <label for="activity" class="control-label">List some activities you enjoy (e.g. hiking, sightseeing, etc.)</label>
+              <input id="activity" class="form-control" type="text">
             </div>
           </div>
           
@@ -115,21 +115,25 @@
         <div class="row">
           <div class="col-md-6">
             <h4>Good news! We were able to find some wonderful suggestions for your next vacation!</h4>
-            <div class="bgFavColor"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
+            <div class="bg-info"><blockquote>We travel not to escape life, but for life not to escape us.</blockquote>
             </div>
-            <mark><strong><span id="suggestedVacation1"></span> <span id="suggestedVacation2"></span> <span id="suggestedVacation3"></span> </strong></mark> is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
+            <mark><strong>
+            <span class="suggested-text" id="suggested-text1"></span> 
+            <span class="suggested-text" id="suggested-text2"></span> 
+            <span class="suggested-text" id="suggested-text3"></span> </strong></mark> 
+            is a great place to visit any time: <mark><span id="when"></span> or whenever you can make it!</mark>  You're sure to enjoy <mark><span id="activities"></span> and many more activities.</mark>
             <nav aria-label="Page navigation">
               <ul class="pagination pagination-lg">
-                <li id="outputNavPage1"><a href="#">1</a></li>
-                <li id="outputNavPage2"><a href="#">2</a></li>
-                <li id="outputNavPage3"><a href="#">3</a></li>
+                <li class="output-nav-page" id="output-nav-page1"><a href="#">1</a></li>
+                <li class="output-nav-page" id="output-nav-page2"><a href="#">2</a></li>
+                <li class="output-nav-page" id="output-nav-page3"><a href="#">3</a></li>
               </ul>
             </nav>
           </div>
-          <div class="col-md-6 img-fit"> 
-            <img id="imgSuggestedVacation1" src='img/beach-banner.jpg' class='img-fit' alt="photo Vacation Suggestion 1">
-            <img id="imgSuggestedVacation2" src='img/beach-banner.jpg' class='img-fit' alt="photo Vacation Suggestion 2">
-            <img id="imgSuggestedVacation3" src='img/beach-banner.jpg' class='img-fit' alt="photo Vacation Suggestion 3">
+          <div class="col-md-6 suggested-image"> 
+            <img id="suggested-image1" src='img/beach-banner.jpg' class='suggested-image' alt="photo suggested vacation 1">
+            <img id="suggested-image2" src='img/beach-banner.jpg' class='suggested-image' alt="photo suggested vacation 2">
+            <img id="suggested-image3" src='img/beach-banner.jpg' class='suggested-image' alt="photo suggestion vacation 3">
           </div>
         </div>
       </div><!-- end output div-->

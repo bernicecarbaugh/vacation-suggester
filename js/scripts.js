@@ -3,17 +3,20 @@ $(document).ready(function() {
   $("form#input").submit(function(event) {
     event.preventDefault();
     
-    // reset from any previous runs
+    // reset output
     $("#div-output").hide();
 
     // get user input
-    // these inputs have defaults so no need to check for null values
+    // these inputs always have values so no need to check for null values
     var habitatInput = $("input:radio[name=habitat]:checked").val();
     var continentInput = $("#continent").val();
     var densityInput = parseInt($("#density").val());
-    var favColorInput = $("#favColor").val();
-    // check that user entered something
+    var favColorInput = $("#favcolor").val();
+
+    // these inputs may be null, so check that user entered something
     var activityInput = $("#activity").val();
+    isValid(activityInput, "div-activity") ;
+
     var whenInput = "";
     if($("#when1").is(":checked")) { 
       whenInput += $("#when1").val() + ", "
@@ -27,34 +30,35 @@ $(document).ready(function() {
     if($("#when4").is(":checked")) { 
       whenInput += $("#when4").val() + ", "
     }
+    // replace final ", " with null string
     whenInput = whenInput.replace(/, $/,"");
-
-    isValid(activityInput, "div-activity") ;
     isValid(whenInput, "div-when") ;
     
+    // call helper function to get suggestions, sending only those arguments that affect the vacation suggestion
+    // since we want 3 suggestions, call the helper function three times
+    // populate the output for all 3 pages but only show one page at a time
     if (activityInput && whenInput) {
-      // call helper function to get suggestions, sending only those arguments that affect the vacation suggestion
-      // since we want 3 suggestions, call the helper function three times
-      // populate the output for all 3 pages but only show one page at a time
+
+      // I know this would be more efficient with arrays and loops but haven't learned that yet
       var suggestedVacation1 = vacationSelector(habitatInput, densityInput, continentInput, 0);
       var suggestedVacation2 = vacationSelector(habitatInput, densityInput, continentInput, 1);
       var suggestedVacation3 = vacationSelector(habitatInput, densityInput, continentInput, 2);
 
-      $('#imgSuggestedVacation1').attr('src',imgFileName(suggestedVacation1));
-      $('#imgSuggestedVacation2').attr('src',imgFileName(suggestedVacation2));
-      $('#imgSuggestedVacation3').attr('src',imgFileName(suggestedVacation3));
-      
-      $("span#suggestedVacation1").text(suggestedVacation1);
-      $("span#suggestedVacation2").text(suggestedVacation2);
-      $("span#suggestedVacation3").text(suggestedVacation3);
+      $('img#suggested-image1').attr('src',imgFileName(suggestedVacation1));
+      $('img#suggested-image2').attr('src',imgFileName(suggestedVacation2));
+      $('img#suggested-image3').attr('src',imgFileName(suggestedVacation3));
+      $("span#suggested-text1").text(suggestedVacation1);
+      $("span#suggested-text2").text(suggestedVacation2);
+      $("span#suggested-text3").text(suggestedVacation3);
 
-      // only display one page at a time
+      // display first page initially
       changePage (1);
 
       // these inputs are only used to personalize output but not used in vacation selector function
       $("#when").text(whenInput);
       $("#activities").text(activityInput);
-      $(".bgFavColor").css("background-color",favColorInput);
+      $("#div-output").css("border-color",favColorInput);
+      
       // display output
       $("#div-output").show();
       
@@ -63,10 +67,23 @@ $(document).ready(function() {
     }
   })
 
-  // check if passed input is valid; if valid, remove has-error class; else add has-error class 
+  $("#output-nav-page1").click(function() {
+    changePage (1);
+  })
+
+  $("#output-nav-page2").click(function() {
+    changePage (2);
+  })
+
+  $("#output-nav-page3").click(function() {
+    changePage (3);
+  })
+
+  // sets styling of domID based on toCheck and returns whether toCheck is truthy or falsey
   var isValid = function(toCheck, domID) {
     if ( toCheck ) {
-      $("#" + domID).removeClass("has-error");
+    // if truthy, remove has-error class; if falsey, add has-error class 
+    $("#" + domID).removeClass("has-error");
       return true;
     } else {
       $("#" + domID).addClass("has-error");
@@ -74,60 +91,47 @@ $(document).ready(function() {
     }
   }
 
+  // returns image file name based on suggestedVacation
   var imgFileName = function(suggestedVacation) {
-  // images are named all lower case, spaces are substituted with - and only through the first comma
+  // naming convention: extract first part before comma, convert spaces to -, lowercase, .jpg suffix in img folder
       var strTemp = suggestedVacation.split(",")[0];
-      strTemp = strTemp.replace(/\s/,"-");
+      strTemp = strTemp.replace(/\s/g,"-");
       strTemp = "img/" + strTemp.toLowerCase() + ".jpg";
       return strTemp;
   }
 
+  // styles HTML elements in output based on numPage
   var changePage = function(numPage) {
-  // this function hides or displays the appropriate text and image based on page
-    $("li#outputNavPage1").removeClass("active");
-    $("li#outputNavPage2").removeClass("active");
-    $("li#outputNavPage3").removeClass("active");
-    $("li#outputNavPage" + numPage).addClass("active");
+    // highlight selected page number in pagination
+    $("li.output-nav-page").removeClass("active");
+    $("li#output-nav-page" + numPage).addClass("active");
 
-    $("span#suggestedVacation1").hide();
-    $("span#suggestedVacation2").hide();
-    $("span#suggestedVacation3").hide();
-    $("span#suggestedVacation" + numPage).fadeIn('slow');
+    // display selected vacation text only
+    $("span.suggested-text").hide();
+    $("span#suggested-text" + numPage).fadeIn('slow');
 
-    $("img#imgSuggestedVacation1").hide();
-    $("img#imgSuggestedVacation2").hide();
-    $("img#imgSuggestedVacation3").hide();
-    $("img#imgSuggestedVacation" + numPage).slideDown('slow');
+    // display selected vacation image only
+    $("img.suggested-image").hide();
+    $("img#suggested-image" + numPage).fadeIn('slow');
   }    
-
-  $("#outputNavPage1").click(function() {
-    changePage (1);
-  })
-
-  $("#outputNavPage2").click(function() {
-    changePage (2);
-  })
-
-  $("#outputNavPage3").click(function() {
-    changePage (3);
-  })
-
 
 })
 
 // back end logic
+
+// returns one vacation suggestion based on user inputs and an offset
 var vacationSelector = function(habitatInput, densityInput, continentInput, numOffset)  {
-  // parameters: user preferences and the numOffset
-  //  numOffset is expected to be 0 to 2 which represents the suggestion order
+  // parameters: user preferences and numOffset
+  //  numOffset is expected to be 0 to 2 which represents the suggestion page (1 to 3)
   //  we use numOffset to present 3 different choices based on densityInput (1 to 3)
   //  this ensures we have three different suggestions for any user preference
-  // output: the name of the suggested vacation destination
   
     var densitySelector = (densityInput + numOffset ) 
-    // this will produce a number between 1 and 5 , which we will need to convert to 1 to 3 
+    // this will be a number between 1 and 5 , which we will need to convert to 1 to 3 
     if ( densitySelector > 3) {
       densitySelector = densitySelector - 3 ;
     }
+
     // urban
     if (densitySelector === 1) {
       if (continentInput === "Asia") {
