@@ -5,12 +5,16 @@
   background-size: 100% 100%;
 }
 
+.bg-jumbotron { 
+  background-color: rgba(120, 142, 218, 0.2);
+}
+
 input[type="range"] {
   display: inline-block;
   width: 40%;
 }
 
-.output {
+#div-output {
   display: none ;
 }
 
@@ -24,6 +28,3 @@ img.img-fit {
   padding: 10px;
 }
 
-.bg-jumbotron { 
-  background-color: rgba(120, 142, 218, 0.2);
-}
