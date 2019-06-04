@@ -18,20 +18,13 @@ $(document).ready(function() {
     isValid(activityInput, "div-activity") ;
 
     var whenInput = "";
-    if($("#when1").is(":checked")) { 
-      whenInput += $("#when1").val() + ", "
-    }
-    if($("#when2").is(":checked")) { 
-      whenInput += $("#when2").val() + ", "
-    }
-    if($("#when3").is(":checked")) { 
-      whenInput += $("#when3").val() + ", "
-    }
-    if($("#when4").is(":checked")) { 
-      whenInput += $("#when4").val() + ", "
-    }
+    $("input:checkbox[name=when]:checked").each(function() {
+      whenInput += $(this).val() + ", ";
+    });
+    
     // replace final ", " with null string
     whenInput = whenInput.replace(/, $/,"");
+    console.log(whenInput);
     isValid(whenInput, "div-when") ;
     
     // call helper function to get suggestions, sending only those arguments that affect the vacation suggestion
